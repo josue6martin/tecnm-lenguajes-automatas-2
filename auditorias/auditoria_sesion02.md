@@ -223,6 +223,7 @@ TODO EN VERDE. Documenta tu auditoria en auditorias/auditoria_sesion02.md
 > Para fortalecer la auditoría, sería conveniente agregar pruebas con lexemas largos y utilizar herramientas como AddressSanitizer o Valgrind, con el objetivo de comprobar la seguridad de memoria en situaciones adicionales.
 >
 > Finalmente, confirmé que tanto la implementación manual como la generada por IA superaron las seis pruebas del Test Harness, obteniendo el resultado de 6/6 y cumpliendo con los requisitos funcionales establecidos para la sesión.
+> 
 
 ---
 
