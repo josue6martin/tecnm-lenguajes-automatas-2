@@ -55,6 +55,16 @@ caso('', '--ast', '(programa)\n')
 caso('', '--run', '')
 caso('print(x);\n'*25, '--check', errores=('E01',))
 
+# Casos de archivo del equipo: se agregan sin modificar las pruebas doradas.
+for archivo in sorted((ROOT / 'tests' / 'propias').glob('*.lj')):
+    salida = archivo.with_suffix('.out')
+    diagnostico = archivo.with_suffix('.err')
+    if salida.exists():
+        caso(archivo.read_text(encoding='utf-8'), '--run', salida.read_text(encoding='utf-8'))
+    elif diagnostico.exists():
+        linea, codigo = diagnostico.read_text(encoding='utf-8').split()
+        caso(archivo.read_text(encoding='utf-8'), '--check', errores=(codigo,))
+
 # Uso incorrecto debe devolver 2; ruta de archivo sin modo usa --check.
 for args in ([], ['x', '--otro'], ['x', '--check', 'extra']):
     r = subprocess.run([str(BIN), *args], capture_output=True, timeout=10)

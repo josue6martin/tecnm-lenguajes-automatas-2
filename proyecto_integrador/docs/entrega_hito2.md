@@ -9,7 +9,8 @@ Tag previsto: `v0.2-hito2` (pendiente de aceptación del equipo).
 
 Semántica, ámbitos y diagnósticos. Consultar README, diseno.md y validacion.md.
 Comando oficial: `make test-hito2`. Pruebas propias: `make test-propias`.
-La evidencia de Linux debe adjuntarse al cerrar la entrega. No se atribuye a una
+Evidencia Linux: 14/14 en [CI](https://github.com/josue6martin/tecnm-lenguajes-automatas-2/actions/runs/42097233258),
+commit cd714e459c4cb5c1ba07984c115cc17d89f23bef. No se atribuye a una
 sesión anterior ni se declara una presentación realizada.
 
 ## Reparto
@@ -35,7 +36,7 @@ Estas son correcciones del asistente; no una auditoría atribuida a los alumnos.
 ## Cierre por el equipo
 
 - [ ] Leer y aceptar o corregir la implementación, anotando decisiones propias.
-- [ ] Ejecutar el comando oficial y adjuntar su salida.
+- [x] Ejecutar el comando oficial en CI y adjuntar el enlace a su salida.
 - [ ] Añadir aportaciones individuales verificables.
 - [ ] Registrar avance real, commit y fecha.
 - [ ] Ensayar la demo de 3 minutos.
