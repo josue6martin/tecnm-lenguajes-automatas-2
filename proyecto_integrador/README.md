@@ -87,6 +87,9 @@ generado durante esta conversación.
 
 ## Documentación
 
+- **Empezar a practicar:** [guion por integrante](docs/exposicion-equipo.md).
+  Windows: `.\practicar-windows.ps1`. Linux: `bash practicar-linux.sh`.
+
 - [Diseño](docs/diseno.md) y [optimización](docs/optimizacion.md).
 - [Guion de demo](docs/demo.md), [avances](docs/avances.md).
 - Entregas: [Hito 1](docs/entrega_hito1.md), [Hito 2](docs/entrega_hito2.md),

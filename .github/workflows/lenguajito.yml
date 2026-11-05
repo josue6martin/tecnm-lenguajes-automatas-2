@@ -26,6 +26,7 @@ jobs:
           make test
           make demo-bin
           readelf -h build/anidado
+          bash practicar-linux.sh
       - name: Verificar memoria y comportamiento indefinido
         run: |
           gcc -std=c11 -Wall -Wextra -Werror -g -fsanitize=address,undefined -fno-omit-frame-pointer -o lenguajito src/*.c
