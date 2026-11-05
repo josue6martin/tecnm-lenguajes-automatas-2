@@ -14,6 +14,7 @@ try {
     function Ejecutar($ruta, $modo) {
         $p = New-Object System.Diagnostics.Process
         $p.StartInfo.FileName = Join-Path $PSScriptRoot 'lenguajito.exe'
+        $p.StartInfo.WorkingDirectory = $PSScriptRoot
         $p.StartInfo.Arguments = '"' + $ruta + '" ' + $modo
         $p.StartInfo.UseShellExecute = $false
         $p.StartInfo.RedirectStandardOutput = $true
@@ -43,7 +44,8 @@ try {
         $total++
     }
     $r = Ejecutar 'tests\tac\01_folding.lj' '--tac'
-    if ($r.Codigo -ne 0 -or $r.Salida -match '=\s*\d+\s*[-+*/]\s*\d+') { throw 'Fallo el plegado de constantes' }
+    if ($r.Codigo -ne 0) { throw "No se pudo comprobar TAC: $($r.Salida) $($r.Error)" }
+    if ($r.Salida -match '=\s*\d+\s*[-+*/]\s*\d+') { throw 'Fallo el plegado de constantes' }
     $total++
     $r = Ejecutar 'tests\validos\01_suma.lj' '--asm'
     if ($r.Codigo -ne 0 -or $r.Salida -notmatch '\.globl main' -or $r.Salida -notmatch '\bret\b') { throw 'Ensamblador incompleto' }
@@ -51,3 +53,4 @@ try {
     Write-Output "Windows: $total/$total pruebas sobre los archivos dorados superadas."
     Write-Output 'La validacion ELF debe ejecutarse en Linux con make test.'
 } finally { Pop-Location }
+
