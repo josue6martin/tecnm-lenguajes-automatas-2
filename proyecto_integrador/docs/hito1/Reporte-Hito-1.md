@@ -150,7 +150,7 @@ Las pruebas doradas originales permanecen sin cambios en `tests/`. Los casos pro
 | Propia | 10 - 3 - 2 | AST asociado a la izquierda |
 | Propia | (1 + 2) * 3 | AST con paréntesis prioritarios |
 
-Los doce casos del verificador específico pasaron en Windows, según la captura de la figura 1. Los ocho casos propios complementan la cobertura oficial; la aprobación no significa que se hayan probado todas las entradas posibles del lenguaje. En Linux, `make test-hito1` superó sus cuatro casos oficiales, como muestra la figura 9. Los ocho casos propios están acreditados por la ejecución de Windows; no se afirma una ejecución adicional de estos casos en Linux.
+Los doce casos del verificador específico pasaron en Windows, según la captura de la figura 1. Los ocho casos propios complementan la cobertura oficial; la aprobación no significa que se hayan probado todas las entradas posibles del lenguaje. En Linux, `make test-hito1` superó sus cuatro casos oficiales, como muestra la figura 9. Los ocho casos propios están acreditados por la ejecución de Windows y por GitHub Actions en Linux, como se documenta en la sección de resultados.
 
 <!-- PAGEBREAK -->
 
@@ -253,7 +253,7 @@ En `int x = y + 1;` se utiliza `y` sin una declaración previa. El diagnóstico 
 
 ## Resultados y reproducción oficial
 
-En Windows se observó el resultado 4/4 oficial y 8/8 propio. Los tres AST individuales coinciden con el formato especificado; el análisis léxico muestra posiciones y EOF; el caso válido devuelve 0 y los casos inválidos S01/E01 devuelven 1. Estas conclusiones se apoyan en las capturas anteriores.
+En Windows se observó el resultado 4/4 oficial y 8/8 propio. La verificación automática del commit 069a723b7523d2d6ea0be812f22d555e7c5aae42 también terminó con éxito en Linux: 4/4 oficiales del Hito 1, 8/8 propias y 20/20 generales. Los tres AST individuales coinciden con el formato especificado; el análisis léxico muestra posiciones y EOF; el caso válido devuelve 0 y los casos inválidos S01/E01 devuelven 1. Estas conclusiones se apoyan en las capturas anteriores.
 
 Se comprobó además que `src/` y `tests/` se conservaron byte por byte respecto de la copia local revisada y que los scripts nuevos tienen sintaxis válida. Los errores de carga de DLL observados en la sesión automática no impidieron la ejecución posterior en el PowerShell del usuario.
 
@@ -271,11 +271,11 @@ make test-hito1
 
 La captura muestra el directorio `/workspaces/tecnm-lenguajes-automatas-2/proyecto_integrador` en la rama `main`. `make` ejecuta la compilación con `cc`, C11 y las banderas `-Wall -Wextra -Werror -O2`. Después, `make test-hito1` invoca `python3 tests/run.py --hito1` y finaliza con `Hito 1: 4/4 pruebas superadas`.
 
-Esta salida documenta la prueba oficial del curso en Linux. No se observan errores de compilación ni de pruebas en la captura. Los ocho casos propios ya se comprobaron en Windows; esta figura acredita únicamente los cuatro oficiales. El Hito 1 no exige demostrar un ejecutable ELF.
+Esta salida documenta la prueba oficial del curso en Linux. No se observan errores de compilación ni de pruebas en la captura. Esta figura acredita únicamente los cuatro casos oficiales. Los ocho propios pasaron en Windows y posteriormente en GitHub Actions para Linux. El Hito 1 no exige demostrar un ejecutable ELF.
 
 ### Elementos pendientes de cierre
 
-- Asociar las evidencias al commit de entrega y registrar su fecha.
+- Usar el commit 069a723b7523d2d6ea0be812f22d555e7c5aae42 como referencia de la integración comprobada; registrar después los commits de las aportaciones humanas.
 - Registrar la revisión y las aportaciones reales de los integrantes.
 - Ensayar y realizar la demo de tres minutos.
 - Revisar el commit de entrega con el equipo. El tag `v0.1-hito1` existente se conserva; este reporte es un complemento documental posterior.
@@ -306,6 +306,7 @@ Las nueve capturas documentan las pruebas específicas en Windows y la prueba of
 
 ## Material de apoyo y referencias
 
+- GitHub Actions del commit de integración: https://github.com/josue6martin/tecnm-lenguajes-automatas-2/actions/runs/42265588230
 - `PROYECTO.md`: requisitos, definición de terminado del Hito 1 y rúbrica.
 - `proyecto_integrador/docs/gramatica.md`: tokens, gramática, AST y diagnósticos.
 - `proyecto_integrador/tests/hito1/`: tres AST oficiales y un error sintáctico.

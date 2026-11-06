@@ -24,3 +24,8 @@ La captura proporcionada por el usuario confirma GCC 6.3.0 y 20/20 de la verific
 Para cada revisión, registrar nombre, fecha, archivo o función revisada, explicación propia, decisión de aceptar o corregir, motivo, cambio realizado, comando ejecutado, resultado y commit real. Si no se rechazó ninguna propuesta de IA, indicarlo con la razón; no inventar rechazos ni correcciones.
 
 Estado al preparar el paquete: revisión humana y aportaciones individuales pendientes de documentar.
+
+
+## Auditoría técnica de la integración
+
+Se revisó el commit `069a723b7523d2d6ea0be812f22d555e7c5aae42`. GitHub Actions terminó con éxito e incluyó 4/4 oficiales, 8/8 propias del Hito 1 y 20/20 generales. Los 11 archivos de fuentes y los 46 archivos existentes de pruebas se compararon con GitHub sin diferencias. Se corrigieron enlaces ausentes del paquete, instrucciones de cierre desactualizadas y el reparto propuesto del README para que coincida con el guion del Hito 1. Esta auditoría técnica del asistente no se atribuye como revisión personal de los integrantes.

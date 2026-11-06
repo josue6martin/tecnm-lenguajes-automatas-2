@@ -2,7 +2,7 @@
 
 ## Entrega actual del Hito 1
 
-El Hito 1 comprende tokens con posiciones, tres AST, aceptación de programas válidos y diagnósticos S01/E01. La evidencia real muestra **4/4 pruebas oficiales en Linux** y **4/4 oficiales más 8/8 propias en Windows**.
+El Hito 1 comprende tokens con posiciones, tres AST, aceptación de programas válidos y diagnósticos S01/E01. La evidencia real muestra **4/4 pruebas oficiales en Linux** y **4/4 oficiales más 8/8 propias en Windows**. La [verificación automática del commit 069a723](https://github.com/josue6martin/tecnm-lenguajes-automatas-2/actions/runs/42265588230) también confirmó en Linux 4/4 oficiales, 8/8 propias y 20/20 generales.
 
 - [Reporte PDF con nueve capturas reales](docs/hito1/Reporte-Hito-1.pdf).
 - [Reporte editable](docs/hito1/Reporte-Hito-1.md).
@@ -101,13 +101,13 @@ no acredita por sí sola participación individual ni presentaciones en clase.
 Los tags se crean cuando el equipo acepta cada entrega; no se inventa una
 cronología de cuatro hitos realizados en distintas sesiones.
 
-## Reparto propuesto para la revisión del equipo
+## Reparto propuesto para la revisión del Hito 1
 
 | Integrante | Archivos que debe revisar, explicar y completar | Evidencia individual |
 | :--- | :--- | :--- |
-| Ingrid Paola Dzul Segovia | `lexer.c`, `parser.c`, `ast.c` | Pendiente de revisión y commits propios |
-| Jonathan Uriel Che Castillo | `semantica.c`, `tac.c`, `util.c` | Pendiente de revisión y commits propios |
-| Josue Efrain Martin Pool | `codegen.c`, integración, pruebas y documentación | Pendiente de revisión y commits propios |
+| Ingrid Paola Dzul Segovia | `src/lexer.c`: tokens, posiciones y caracteres inválidos | Pendiente de revisión y commits propios |
+| Jonathan Uriel Che Castillo | `src/parser.c`, `src/ast.c`: gramática, precedencia y AST | Pendiente de revisión y commits propios |
+| Josue Efrain Martin Pool | `src/compilador.c`, `Makefile` y pruebas: integración y S01/E01 | Pendiente de revisión y commits propios |
 
 Este reparto es una propuesta, no una afirmación de autoría humana del código
 generado durante esta conversación.
@@ -121,5 +121,6 @@ generado durante esta conversación.
 - [Guion de demo](docs/demo.md), [avances](docs/avances.md).
 - Entregas: [Hito 1](docs/entrega_hito1.md), [Hito 2](docs/entrega_hito2.md),
   [Hito 3](docs/entrega_hito3.md), [Hito 4](docs/entrega_hito4.md).
+
 
 

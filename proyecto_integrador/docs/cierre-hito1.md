@@ -1,41 +1,35 @@
 # Cierre de la entrega del Hito 1
 
-## Comprobaciones
+Revisión técnica del 6 de noviembre de 2026.
 
-- [ ] El equipo revisó el lexer, parser, AST y comprobaciones S01/E01.
-- [x] Windows mostró 4/4 oficiales y 8/8 propias en el verificador nuevo; captura conservada en `evidencias/01-pruebas.png`.
-- [x] Linux mostró 4/4 en `make test-hito1`; captura conservada en `evidencias/09-linux-hito1.png`. Los ocho casos propios se acreditaron en Windows.
-- [ ] Se anexaron las salidas reales con fecha y commit.
-- [ ] El reporte se revisó y se completaron docente y grupo si hacen falta.
-- [x] README describe qué funciona y el alcance de la entrega.
-- [ ] La bitácora registra decisiones y auditoría humana reales.
-- [ ] Los commits reflejan aportaciones reales de los integrantes.
-- [ ] Se ensayó la demo de tres minutos.
-- [x] Tag `v0.1-hito1` existente verificado sobre `3e09970377805c528cccd4936de765530bf96d00`; no se movió.
+## Comprobaciones terminadas
 
-## Integración y tag
+- [x] Tokens con línea, columna, categoría, lexema y EOF documentados.
+- [x] Tres AST oficiales documentados con capturas reales.
+- [x] Aceptación de un programa válido y rechazos S01/E01 documentados.
+- [x] Windows mostró 4/4 oficiales y 8/8 propias en el verificador específico.
+- [x] Linux en Codespaces mostró 4/4 en `make test-hito1`.
+- [x] GitHub Actions confirmó 4/4 oficiales, 8/8 propias y 20/20 generales.
+- [x] Reporte de diez páginas con nueve capturas, README, bitácora y guion disponibles.
+- [x] Documentación y pruebas propias integradas en `main`, commit `069a723b7523d2d6ea0be812f22d555e7c5aae42`.
+- [x] Tag `v0.1-hito1` existente verificado sobre `3e09970377805c528cccd4936de765530bf96d00`; conservado sin cambios.
 
-El ZIP es un paquete de preparación, no sustituye el fork del curso. Integrar `proyecto_integrador/` en la copia Git existente; conservar el historial y todos los archivos ajenos al hito. Comparar los cambios antes de subir. `tests/` debe quedar sin cambios.
+## Evidencia verificable
 
-En una terminal del repositorio, revisar:
+- [Reporte PDF](hito1/Reporte-Hito-1.pdf).
+- [Nueve capturas originales](evidencias/).
+- [Commit de integración y pruebas](https://github.com/josue6martin/tecnm-lenguajes-automatas-2/commit/069a723b7523d2d6ea0be812f22d555e7c5aae42).
+- [GitHub Actions aprobado](https://github.com/josue6martin/tecnm-lenguajes-automatas-2/actions/runs/42265588230).
+- [Tag publicado](https://github.com/josue6martin/tecnm-lenguajes-automatas-2/tree/v0.1-hito1).
 
-```text
-git status --short
-git diff -- proyecto_integrador/tests
-git diff --stat
-git tag --list v0.1-hito1
-```
+Los archivos `src/` y `tests/` no se modificaron al integrar el material del Hito 1. El reporte y los ocho casos propios se añadieron después del tag existente. Por ello, para consultar la documentación completa se debe usar `main`; el tag por sí solo no contiene el reporte nuevo. No se borró ni movió el tag.
 
-Después de guardar las aportaciones reales en un commit y ejecutar las pruebas sobre ese estado, crear el tag si todavía no existe:
+## Actividades que completa el equipo
 
-```text
-git tag -a v0.1-hito1 -m "Entrega del Hito 1"
-git push origin HEAD
-git push origin v0.1-hito1
-```
+- [ ] Revisar el código y registrar decisiones personales reales en la bitácora.
+- [ ] Registrar aportaciones y commits individuales cuando existan.
+- [ ] Confirmar los datos de identificación requeridos por el docente.
+- [ ] Ensayar y realizar la demo de tres minutos.
+- [ ] Entregar el enlace del repositorio y el reporte según el medio indicado por el profesor.
 
-Si el tag ya existe, revisar a qué commit apunta; no borrarlo ni forzarlo. Estos comandos publican cambios: deben ejecutarse sobre el repositorio y la rama elegidos por el equipo. No se ejecutaron automáticamente. Al revisar GitHub se comprobó que el tag ya existe; no debe recrearse ni moverse sin una decisión expresa del equipo. Al revisar GitHub se comprobó que el tag ya existe; no debe recrearse ni moverse sin una decisión expresa del equipo.
-
-## Evidencia conservada
-
-`evidencia-windows-previa.png` es la captura aportada por el usuario con GCC 6.3.0 y 20/20 pruebas generales. `verificacion-del-paquete.txt` registra comprobaciones de preparación del paquete, no una ejecución del compilador. El reporte separa ambas cosas de las pruebas pendientes.
+La ejecución de pruebas está acreditada; las capturas no acreditan por sí solas auditoría personal ni una presentación en clase. El guion y las preguntas de preparación están en [guion-hito1.md](guion-hito1.md).

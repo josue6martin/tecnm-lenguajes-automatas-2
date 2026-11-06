@@ -72,7 +72,7 @@ Hito 1: 4/4 pruebas superadas
 
 Las cuatro pruebas oficiales comprueban tres árboles AST y un error `S01`. El modo `--tokens` y el diagnóstico `E01` deben mostrarse también en la demostración.
 
-**Pruebas propias propuestas (pendientes de ejecutar y registrar):**
+**Propuestas iniciales de pruebas adicionales (registro histórico):**
 
 | Caso | Qué comprueba | Evidencia |
 | :--- | :--- | :--- |
@@ -81,7 +81,7 @@ Las cuatro pruebas oficiales comprueban tres árboles AST y un error `S01`. El m
 | `int x = ;` | Error de sintaxis `S01` | Pendiente de captura propia |
 | `int x = y;` | Variable no declarada `E01` | Pendiente |
 
-Las pruebas propias nuevas se pueden guardar bajo `tests/propias/` sin alterar los casos dorados de `tests/hito1/`.
+Los casos nuevos incorporados se guardan en `pruebas/hito1/`, fuera de `tests/`, para conservar intactas las pruebas del curso. La tabla anterior registra propuestas; el conjunto efectivamente ejecutado consta de ocho casos y está documentado en el reporte actualizado.
 
 ## 4. Reparto de trabajo
 
@@ -163,3 +163,8 @@ Se incorporó el [reporte PDF](hito1/Reporte-Hito-1.pdf) con nueve capturas: pru
 La tabla de pruebas propuestas de la sección 3 conserva el historial de preparación. Los ocho casos efectivamente incorporados están en `pruebas/hito1/`; el reporte explica sus resultados. No se modificó `tests/`.
 
 El tag existente apunta a la implementación previa; este commit añade documentación y comprobaciones. No se movió el tag. Los testimonios propuestos y campos personales anteriores siguen sujetos a revisión de sus autores.
+
+
+### Revisión técnica posterior
+
+La [ejecución de GitHub Actions del commit 069a723](https://github.com/josue6martin/tecnm-lenguajes-automatas-2/actions/runs/42265588230) confirmó 4/4 pruebas oficiales del Hito 1, 8/8 propias y 20/20 generales. Esto completa la verificación automática de las pruebas propias en Linux. La revisión y las opiniones personales de los integrantes siguen pendientes de confirmación por sus autores.
