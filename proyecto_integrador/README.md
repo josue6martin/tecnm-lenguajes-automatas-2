@@ -1,5 +1,32 @@
 # Proyecto Integrador · Lenguajito
 
+## Entrega actual del Hito 1
+
+El Hito 1 comprende tokens con posiciones, tres AST, aceptación de programas válidos y diagnósticos S01/E01. La evidencia real muestra **4/4 pruebas oficiales en Linux** y **4/4 oficiales más 8/8 propias en Windows**.
+
+- [Reporte PDF con nueve capturas reales](docs/hito1/Reporte-Hito-1.pdf).
+- [Reporte editable](docs/hito1/Reporte-Hito-1.md).
+- [Guion de tres minutos](docs/guion-hito1.md) y [bitácora C-R-E-O](docs/bitacora-hito1.md).
+- [Estado y cierre](docs/cierre-hito1.md).
+
+```bash
+cd proyecto_integrador
+make
+make test-hito1
+make test-hito1-propias
+```
+
+En Windows, desde `proyecto_integrador/`:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\verificar-hito1-windows.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\practicar-hito1-windows.ps1
+```
+
+Los ocho casos propios están en `pruebas/hito1/`; `tests/` y `src/` permanecen sin cambios en esta actualización. `make test` incluye también las pruebas propias del Hito 1. Las etapas posteriores que ya existen se conservan y no amplían el alcance de esta entrega.
+
+El tag [`v0.1-hito1`](https://github.com/josue6martin/tecnm-lenguajes-automatas-2/tree/v0.1-hito1) ya estaba publicado sobre `3e09970377805c528cccd4936de765530bf96d00`; se conserva. Este complemento documental está en la rama `main`. La auditoría personal, las aportaciones de cada integrante y la demo requieren participación real del equipo.
+
 Equipo: **Ingrid Paola Dzul Segovia, Jonathan Uriel Che Castillo y Josue Efrain Martin Pool**.
 
 Compilador en C11 para la [gramática del curso](docs/gramatica.md). Lee programas
@@ -94,4 +121,5 @@ generado durante esta conversación.
 - [Guion de demo](docs/demo.md), [avances](docs/avances.md).
 - Entregas: [Hito 1](docs/entrega_hito1.md), [Hito 2](docs/entrega_hito2.md),
   [Hito 3](docs/entrega_hito3.md), [Hito 4](docs/entrega_hito4.md).
+
 

@@ -5,7 +5,7 @@
 **Proyecto:** Lenguajito  
 **Equipo:** Ingrid Paola Dzul Segovia, Jonathan Uriel Che Castillo y Josue Efrain Martin Pool  
 **Repositorio:** https://github.com/josue6martin/tecnm-lenguajes-automatas-2  
-**Tag previsto:** `v0.1-hito1` (pendiente de aceptación y publicación)  
+**Tag publicado:** `v0.1-hito1`, sobre `3e09970377805c528cccd4936de765530bf96d00`; conservado sin cambios  
 **Fecha de preparación de esta auditoría:** 2026-11-06
 
 > **Estado:** borrador para revisión de los tres integrantes. Las opiniones son propuestas, no testimonios confirmados. No se atribuyen trabajos individuales ni demos que todavía no se hayan comprobado.
@@ -46,7 +46,7 @@ El árbol demuestra que la multiplicación tiene prioridad sobre la suma.
 
 Los cuatro casos oficiales del Hito 1 tienen evidencia de ejecución exitosa; no se detectaron fallos en esos casos. Esto no demuestra que se hayan revisado todas las entradas posibles.
 
-- [ ] Repetir las pruebas en el Codespace o equipo que se utilizará en clase y registrar evidencia.
+- [x] Ejecutar las cuatro pruebas oficiales en Codespaces y adjuntar la captura en el reporte actualizado.
 - [ ] Revisar entradas propias con paréntesis, operador unario y errores sin modificar las pruebas oficiales.
 - [ ] Registrar aportaciones y observaciones reales de cada integrante.
 - [ ] Documentar cualquier limitación adicional que se descubra.
@@ -146,11 +146,20 @@ Se utilizó asistencia de IA para preparar la implementación inicial y la docum
 
 - [ ] Demo ensayada por los tres integrantes.
 - [ ] Cada integrante puede explicar las partes esenciales del Hito 1.
-- [ ] Evidencias de ejecución propia anexadas.
+- [x] Evidencias reales de ejecución en Windows y Linux anexadas al reporte actualizado.
 - [ ] Opiniones personales revisadas por sus autores.
 - [ ] Aportes y commits individuales registrados.
-- [ ] Se crea y publica el tag `v0.1-hito1` después de la aceptación del equipo.
+- [x] Tag `v0.1-hito1` existente verificado; su existencia no acredita aceptación individual ni demo.
 
 **Conclusión conjunta propuesta para revisar:**
 
 > Este primer hito permite comprender cómo el código fuente se separa en tokens y se organiza en un árbol sintáctico. Las pruebas nos ayudan a comprobar el funcionamiento frente a los ejemplos oficiales. Antes de presentar, queremos entender y verificar cada etapa para poder explicarla con nuestras propias palabras.
+
+
+## Actualización con evidencias reales del Hito 1
+
+Se incorporó el [reporte PDF](hito1/Reporte-Hito-1.pdf) con nueve capturas: pruebas específicas, tokens, tres AST, aceptación de un programa válido, errores S01/E01 y `make test-hito1` en GitHub Codespaces con 4/4 superadas. Las pruebas propias específicas pasaron 8/8 en Windows y pueden repetirse con `make test-hito1-propias` en Linux. No se atribuye a los integrantes una auditoría personal ni una presentación que todavía no se haya registrado.
+
+La tabla de pruebas propuestas de la sección 3 conserva el historial de preparación. Los ocho casos efectivamente incorporados están en `pruebas/hito1/`; el reporte explica sus resultados. No se modificó `tests/`.
+
+El tag existente apunta a la implementación previa; este commit añade documentación y comprobaciones. No se movió el tag. Los testimonios propuestos y campos personales anteriores siguen sujetos a revisión de sus autores.

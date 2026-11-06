@@ -14,6 +14,7 @@ $(BIN): $(SRC) $(HDR)
 test: $(BIN)
 	python3 tests/run.py
 	$(MAKE) test-propias
+	$(MAKE) test-hito1-propias
 
 test-propias: $(BIN)
 	python3 pruebas/run.py
@@ -45,3 +46,8 @@ clean:
 	rm -f $(BIN)
 	rm -rf build
 
+
+
+.PHONY: test-hito1-propias
+test-hito1-propias: $(BIN)
+	python3 pruebas/run_hito1.py
