@@ -1,44 +1,156 @@
-# Entrega técnica · Hito 1
+# Entrega · Hito 1 — Léxico, sintaxis y AST
 
-Equipo: Ingrid Paola Dzul Segovia, Jonathan Uriel Che Castillo y Josue Efrain Martin Pool.
-Repositorio: https://github.com/josue6martin/tecnm-lenguajes-automatas-2
-Fecha de preparación: 2026-11-05.
-Tag previsto: `v0.1-hito1` (pendiente de aceptación del equipo).
+**Materia:** Lenguajes y Autómatas II (SCD-1016)  
+**Docente:** MCC. Iván Márquez Larios  
+**Proyecto:** Lenguajito  
+**Equipo:** Ingrid Paola Dzul Segovia, Jonathan Uriel Che Castillo y Josue Efrain Martin Pool  
+**Repositorio:** https://github.com/josue6martin/tecnm-lenguajes-automatas-2  
+**Tag previsto:** `v0.1-hito1` (pendiente de aceptación y publicación)  
+**Fecha de preparación de esta auditoría:** 2026-11-06
 
-## Alcance y pruebas
+> **Estado:** borrador para revisión de los tres integrantes. Las opiniones son propuestas, no testimonios confirmados. No se atribuyen trabajos individuales ni demos que todavía no se hayan comprobado.
 
-Tokens, parser y AST. Consultar README, diseno.md y validacion.md.
-Comando oficial: `make test-hito1`. Pruebas propias: `make test-propias`.
-Evidencia Linux: 4/4 en [CI](https://github.com/josue6martin/tecnm-lenguajes-automatas-2/actions/runs/42097233258),
-commit cd714e459c4cb5c1ba07984c115cc17d89f23bef. No se atribuye a una
-sesión anterior ni se declara una presentación realizada.
+---
 
-## Reparto
+## 1. Qué funciona
 
-La tabla de README propone áreas de revisión para los tres integrantes.
-La implementación inicial fue generada con IA a solicitud de Josue.
-Revisión humana, commits individuales y aceptación: pendientes del equipo.
+En el Hito 1 se integraron el análisis léxico, el análisis sintáctico y el árbol sintáctico abstracto (AST). Los archivos principales son `src/lexer.c`, `src/parser.c` y `src/ast.c`. Desde una terminal Linux o GitHub Codespaces ubicada en `proyecto_integrador/`, los comandos son:
 
-## Bitácora C-R-E-O
+```bash
+make
+./lenguajito tests/hito1/01_expresion.lj --tokens
+./lenguajito tests/hito1/01_expresion.lj --ast
+./lenguajito tests/hito1/04_invalida.lj --check
+./lenguajito tests/invalidos/01_no_declarada.lj --check
+```
 
-| Contexto | Rol | Especificación | Output y auditoría |
-| :--- | :--- | :--- | :--- |
-| Solicitud de completar el proyecto integrador del fork | Asistente de programación | C11, libc, parser manual, gramática original, pruebas sin cambios | Código modular, pruebas y documentación; revisión humana pendiente |
-| Tokens, parser y AST | Implementador y verificador automático | Respetar interfaces, modos y códigos del curso | Compilación sin warnings y pruebas Windows descritas en validacion.md; verificar CI Linux |
+- `--tokens` imprime línea, columna, categoría y lexema.
+- `--ast` imprime el árbol sintáctico según la gramática oficial.
+- `--check` reporta `S01` ante un error sintáctico y `E01` ante una variable no declarada.
 
-Correcciones detectadas durante la implementación asistida: el modo exclusivo
-`fopen("wx")` no funciona en el CRT antiguo de MinGW; se aisló una compatibilidad
-local. Se corrigió la validación de literales positivos fuera de 32 bits.
-Se preservó el contenido exacto de las pruebas descargadas. Se agregó análisis
-conservador de asignación definida y una prueba específica de dependencias DCE.
-Estas son correcciones del asistente; no una auditoría atribuida a los alumnos.
+Ejemplo de entrada (`tests/hito1/01_expresion.lj`):
 
-## Cierre por el equipo
+```c
+int x = 1 + 2 * 3;
+```
 
-- [ ] Leer y aceptar o corregir la implementación, anotando decisiones propias.
-- [x] Ejecutar el comando oficial en CI y adjuntar el enlace a su salida.
-- [ ] Añadir aportaciones individuales verificables.
-- [ ] Registrar avance real, commit y fecha.
-- [ ] Ensayar la demo de 3 minutos.
-- [ ] Crear y subir el tag cuando la entrega esté aceptada.
+Salida AST esperada (`tests/hito1/01_expresion.ast`):
 
+```text
+(programa (declarar x (+ (num 1) (* (num 2) (num 3)))))
+```
+
+El árbol demuestra que la multiplicación tiene prioridad sobre la suma.
+
+## 2. Qué no funciona (y por qué)
+
+Los cuatro casos oficiales del Hito 1 tienen evidencia de ejecución exitosa; no se detectaron fallos en esos casos. Esto no demuestra que se hayan revisado todas las entradas posibles.
+
+- [ ] Repetir las pruebas en el Codespace o equipo que se utilizará en clase y registrar evidencia.
+- [ ] Revisar entradas propias con paréntesis, operador unario y errores sin modificar las pruebas oficiales.
+- [ ] Registrar aportaciones y observaciones reales de cada integrante.
+- [ ] Documentar cualquier limitación adicional que se descubra.
+
+**Alcance:** TAC y backend corresponden a hitos posteriores; no son requisitos de este primer hito.
+
+## 3. Pruebas
+
+Comando oficial:
+
+```bash
+make test-hito1
+```
+
+Resultado documentado en GitHub Actions el 5 de noviembre de 2026:
+
+```text
+Hito 1: 4/4 pruebas superadas
+```
+
+**Evidencia:** https://github.com/josue6martin/tecnm-lenguajes-automatas-2/actions/runs/42097233258  
+**Commit probado:** `cd714e459c4cb5c1ba07984c115cc17d89f23bef`
+
+Las cuatro pruebas oficiales comprueban tres árboles AST y un error `S01`. El modo `--tokens` y el diagnóstico `E01` deben mostrarse también en la demostración.
+
+**Pruebas propias propuestas (pendientes de ejecutar y registrar):**
+
+| Caso | Qué comprueba | Evidencia |
+| :--- | :--- | :--- |
+| `int resultado = (1 + 2) * 3;` | Precedencia con paréntesis | Pendiente |
+| `int valor = -5;` | Operador unario | Pendiente |
+| `int x = ;` | Error de sintaxis `S01` | Pendiente de captura propia |
+| `int x = y;` | Variable no declarada `E01` | Pendiente |
+
+Las pruebas propias nuevas se pueden guardar bajo `tests/propias/` sin alterar los casos dorados de `tests/hito1/`.
+
+## 4. Reparto de trabajo
+
+La tabla refleja una **propuesta de revisión y exposición**, no la autoría del código inicial generado con asistencia de IA. Cada integrante debe anotar sus actividades reales y los commits que le correspondan.
+
+| Integrante | Archivos / etapas para revisar y explicar | Commits principales / evidencia |
+| :--- | :--- | :--- |
+| Ingrid Paola Dzul Segovia | `src/lexer.c`: tokens, categorías, posiciones y errores léxicos | Pendiente de registrar |
+| Jonathan Uriel Che Castillo | `src/parser.c`, `src/ast.c`: gramática, precedencias y representación AST | Pendiente de registrar |
+| Josue Efrain Martin Pool | `src/compilador.c`, `Makefile`, `tests/hito1/`: integración, diagnóstico y pruebas | Pendiente de registrar |
+
+### Punto de vista de Ingrid — propuesta para que ella la revise
+
+> Al estudiar la parte léxica de Lenguajito, me parece importante cómo el compilador reconoce palabras reservadas, números, identificadores y operadores. También considero útil que registre la línea y la columna, porque así podemos encontrar dónde aparece un error. Quiero verificar estos resultados directamente con los ejemplos antes de confirmar mi revisión.
+
+**Comentario o corrección personal de Ingrid:** [editar aquí]  
+**Prueba realizada / commit:** [completar]
+
+### Punto de vista de Jonathan — propuesta para que él la revise
+
+> Lo que más me llama la atención del parser y el AST es que reconocer tokens no basta: el compilador necesita organizarlos de acuerdo con las reglas del lenguaje. El ejemplo `1 + 2 * 3` muestra cómo se respeta la prioridad de las operaciones. Para explicar esta etapa, necesito comprobar los árboles esperados y los errores de sintaxis.
+
+**Comentario o corrección personal de Jonathan:** [editar aquí]  
+**Prueba realizada / commit:** [completar]
+
+### Punto de vista de Josue — propuesta para que él la revise
+
+> Considero que lo más importante del primer hito es comprender cómo se conectan el lexer, el parser y el AST para analizar un programa. El comando `make test-hito1` ayuda a verificar que las salidas coincidan con los casos del profesor. Antes de la entrega, quiero repetir las pruebas y explicar los resultados, no solamente mostrar que aparecen en verde.
+
+**Comentario o corrección personal de Josue:** [editar aquí]  
+**Prueba realizada / commit:** [completar]
+
+**Validación de opiniones:** pendientes de aprobación y ajuste por cada autor.
+
+## 5. Bitácora C-R-E-O (IA)
+
+Se utilizó asistencia de IA para preparar la implementación inicial y la documentación. La tabla distingue lo producido de lo aceptado o revisado realmente por el equipo.
+
+| Contexto | Rol | Especificación | Output | ¿Qué aceptaron, corrigieron o rechazaron? |
+| :--- | :--- | :--- | :--- | :--- |
+| Preparación del Proyecto Integrador | Asistente de programación | C11, GCC con `-Wall -Wextra -Werror`, libc, parser manual y gramática del curso | Código modular integrado al repositorio | Integración inicial asistida por IA; aceptación del equipo pendiente |
+| Léxico y tokens | Apoyo de implementación | `KW`, `ID`, `NUM`, `OP`, `DELIM`, `EOF`; formato `LINEA:COLUMNA TIPO lexema` | `src/lexer.c` y `--tokens` | Revisar tokens válidos, posiciones y caracteres inválidos antes de aprobar |
+| Parser y AST | Apoyo de implementación | Análisis descendente recursivo, precedencias y AST del formato oficial | `src/parser.c`, `src/ast.c`, `--ast` | Las pruebas de AST están documentadas como superadas; auditoría individual pendiente |
+| Diagnósticos y verificación | Asistente de pruebas | `S01` / `E01`, pruebas oficiales sin cambios y `make test-hito1` | Evidencia automatizada 4/4 en GitHub Actions | Registrar capturas y decisiones propias de los integrantes |
+
+**Correcciones documentadas de la implementación asistida:** compatibilidad local con MinGW y validación del rango de literales; no se atribuyen a un integrante sin evidencia. No se deben inventar decisiones individuales.
+
+**Registro de decisiones del equipo:**
+
+- **Aceptamos:** [qué verificamos, cómo y por qué].
+- **Corregimos:** [archivo, cambio y commit; si no hubo, escribir «Ninguna corrección propia registrada»].
+- **Rechazamos:** [sugerencia y motivo; si no hubo, escribir «No se registraron rechazos»].
+- **Consulta adicional a IA:** [fecha, contexto, respuesta y juicio del equipo, si aplica].
+
+## 6. Demo
+
+**Meta: 3 minutos para el Hito 1.**
+
+1. **Ingrid (1 min):** explicar el lexer y ejecutar `./lenguajito tests/hito1/01_expresion.lj --tokens`.
+2. **Jonathan (1 min):** explicar parser/AST y ejecutar `./lenguajito tests/hito1/01_expresion.lj --ast`.
+3. **Josue (1 min):** mostrar `./lenguajito tests/hito1/04_invalida.lj --check` y `make test-hito1`, explicar el error `S01` y el resultado 4/4.
+
+- [ ] Demo ensayada por los tres integrantes.
+- [ ] Cada integrante puede explicar las partes esenciales del Hito 1.
+- [ ] Evidencias de ejecución propia anexadas.
+- [ ] Opiniones personales revisadas por sus autores.
+- [ ] Aportes y commits individuales registrados.
+- [ ] Se crea y publica el tag `v0.1-hito1` después de la aceptación del equipo.
+
+**Conclusión conjunta propuesta para revisar:**
+
+> Este primer hito permite comprender cómo el código fuente se separa en tokens y se organiza en un árbol sintáctico. Las pruebas nos ayudan a comprobar el funcionamiento frente a los ejemplos oficiales. Antes de presentar, queremos entender y verificar cada etapa para poder explicarla con nuestras propias palabras.
