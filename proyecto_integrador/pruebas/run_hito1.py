@@ -22,6 +22,8 @@ def main():
         ("sin_punto_coma", "--check", 1, (2, 1, "S01")),
         ("asociatividad", "--ast", 0, "asociatividad.ast"),
         ("parentesis", "--ast", 0, "parentesis.ast"),
+        ("unario", "--ast", 0, "unario.ast"),
+        ("comparacion", "--ast", 0, "comparacion.ast"),
     ]
     failures = 0
     for name, mode, code, expected in cases:
