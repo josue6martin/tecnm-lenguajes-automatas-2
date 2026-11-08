@@ -104,8 +104,8 @@ La tabla refleja una **propuesta de revisión y exposición**, no la autoría de
 
 > Lo que más me llama la atención del parser y el AST es que reconocer tokens no basta: el compilador necesita organizarlos de acuerdo con las reglas del lenguaje. El ejemplo `1 + 2 * 3` muestra cómo se respeta la prioridad de las operaciones. Para explicar esta etapa, necesito comprobar los árboles esperados y los errores de sintaxis.
 
-**Comentario o corrección personal de Jonathan:** [editar aquí]  
-**Prueba realizada / commit:** [completar]
+**Comentario o corrección personal de Jonathan:** Revisé `src/parser.c` y `src/ast.c` y verifiqué cómo la precedencia queda definida por la cadena de llamadas (`expresion` → `aditiva` → `multiplicativa` → `unaria` → `primaria`) y la asociatividad a la izquierda por los `while` de `aditiva()` y `multiplicativa()`. Comprobé con el compilador que `-5` se imprime como `(neg (num 5))` y que en `1 + 2 < 4` la suma se resuelve antes que la comparación, como pide la gramática.
+**Prueba realizada / commit:** Agregué `pruebas/hito1/unario.{lj,ast}` y `pruebas/hito1/comparacion.{lj,ast}` con su registro en `run_hito1.py`. Compilado en Windows con `gcc -std=c11 -Wall -Wextra -Werror` sin warnings: 10/10 pruebas propias y 4/4 oficiales. Commit `56b2f77`.
 
 ### Punto de vista de Josue — propuesta para que él la revise
 
