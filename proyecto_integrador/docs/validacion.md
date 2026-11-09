@@ -18,6 +18,10 @@ Fecha: 2026-11-05.
 - Validación posterior de 32 casos: https://github.com/josue6martin/tecnm-lenguajes-automatas-2/actions/runs/42097565212
 - main integrado y validado: https://github.com/josue6martin/tecnm-lenguajes-automatas-2/actions/runs/42099229913
 - Revisión posterior local: se repitieron con éxito 20/20 doradas y 32/32 propias.
+- Revisión individual de Ingrid (2026-11-09): repetido en Windows con GCC 16.2.0
+  `verificar-hito1-windows.ps1`, 4/4 oficiales y 8/8 propias; `--tokens` de
+  `pruebas/hito1/tokens.lj` coincide con `tokens.tokens`; casos límite propios
+  `intx`/`impar` clasificados como `ID` y `!` aislado reportado como `S01`.
 - Artefacto con ELF y ensamblador: lenguajito-demo-linux-x86-64, disponible en
   la ejecución anterior (los artefactos tienen la retención de GitHub Actions).
 - Los archivos originales de tests/ se conservan; las pruebas adicionales viven
