@@ -105,7 +105,7 @@ cronología de cuatro hitos realizados en distintas sesiones.
 
 | Integrante | Archivos que debe revisar, explicar y completar | Evidencia individual |
 | :--- | :--- | :--- |
-| Ingrid Paola Dzul Segovia | `src/lexer.c`: tokens, posiciones y caracteres inválidos | `f3271b8` (revisión de `lexer.c` y registro de su aparte en la entrega del Hito 1) |
+| Ingrid Paola Dzul Segovia | `src/lexer.c`: tokens, posiciones y caracteres inválidos | `f3271b8` (revisión de `lexer.c` y registro de su aparte en la entrega del Hito 1); `3a4eac9` (caso de prueba `prefijo_kw`) |
 | Jonathan Uriel Che Castillo | `src/parser.c`, `src/ast.c`: gramática, precedencia y AST | Pendiente de revisión y commits propios |
 | Josue Efrain Martin Pool | `src/compilador.c`, `Makefile` y pruebas: integración y S01/E01 | Pendiente de revisión y commits propios |
 

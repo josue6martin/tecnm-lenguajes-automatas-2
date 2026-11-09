@@ -22,6 +22,9 @@ Fecha: 2026-11-05.
   `verificar-hito1-windows.ps1`, 4/4 oficiales y 8/8 propias; `--tokens` de
   `pruebas/hito1/tokens.lj` coincide con `tokens.tokens`; casos límite propios
   `intx`/`impar` clasificados como `ID` y `!` aislado reportado como `S01`.
+- Pruebas propias del Hito 1 (`pruebas/run_hito1.py`): 11/11 en Windows con
+  GCC 16.2 y Python 3.12, incluido el caso `prefijo_kw` de Ingrid (commit
+  `3a4eac9`); los cinco prefijos de palabras reservadas se clasifican como `ID`.
 - Artefacto con ELF y ensamblador: lenguajito-demo-linux-x86-64, disponible en
   la ejecución anterior (los artefactos tienen la retención de GitHub Actions).
 - Los archivos originales de tests/ se conservan; las pruebas adicionales viven
