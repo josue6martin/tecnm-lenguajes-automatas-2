@@ -106,8 +106,8 @@ cronología de cuatro hitos realizados en distintas sesiones.
 | Integrante | Archivos que debe revisar, explicar y completar | Evidencia individual |
 | :--- | :--- | :--- |
 | Ingrid Paola Dzul Segovia | `src/lexer.c`: tokens, posiciones y caracteres inválidos | `f3271b8` (revisión de `lexer.c` y registro de su aparte en la entrega del Hito 1); `3a4eac9` (caso de prueba `prefijo_kw`) |
-| Jonathan Uriel Che Castillo | `src/parser.c`, `src/ast.c`: gramática, precedencia y AST | Pendiente de revisión y commits propios |
-| Josue Efrain Martin Pool | `src/compilador.c`, `Makefile` y pruebas: integración y S01/E01 | Pendiente de revisión y commits propios |
+| Jonathan Uriel Che Castillo | `src/parser.c`, `src/ast.c`: gramática, precedencia y AST | `56b2f77` (pruebas propias `unario` y `comparacion` + registro en `run_hito1.py`), `b95b1cf` (aparte personal en la entrega), `8a638f7` y `2b01ccb` (guiones de exposición); revisión confirmada el 2026-11-09 |
+| Josue Efrain Martin Pool | `src/compilador.c`, `Makefile` y pruebas: integración y S01/E01 | `cd714e4` (implementación), `069a723` (objetivo `test-hito1-propias` + reporte), `bf172b7` (fix verificador Windows), `aa315d1` (documentación); su confirmación como revisor sigue pendiente |
 
 Este reparto es una propuesta, no una afirmación de autoría humana del código
 generado durante esta conversación.
