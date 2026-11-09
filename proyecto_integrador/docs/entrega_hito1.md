@@ -8,7 +8,7 @@
 **Tag publicado:** `v0.1-hito1`, sobre `3e09970377805c528cccd4936de765530bf96d00`; conservado sin cambios  
 **Fecha de preparación de esta auditoría:** 2026-11-06
 
-> **Estado:** borrador en revisión. Los apartes de Jonathan están completados y verificados con sus commits (`56b2f77`, `b95b1cf`). El de Ingrid quedó completado con su commit propio de revisión de `src/lexer.c` y su verificación en Windows; el de Josue sigue abierto a su autor. No se atribuyen demos que todavía no se hayan comprobado.
+> **Estado:** borrador en revisión. Los apartes de Jonathan están completados y verificados con sus commits (`56b2f77`, `b95b1cf`). El de Ingrid quedó completado con su commit propio `f3271b8` (revisión de `src/lexer.c` y verificación en Windows); el de Josue sigue abierto a su autor. No se atribuyen demos que todavía no se hayan comprobado.
 
 ---
 
@@ -89,7 +89,7 @@ La tabla refleja una **propuesta de revisión y exposición**, no la autoría de
 
 | Integrante | Archivos / etapas para revisar y explicar | Commits principales / evidencia |
 | :--- | :--- | :--- |
-| Ingrid Paola Dzul Segovia | `src/lexer.c`: tokens, categorías, posiciones y errores léxicos | Commit propio con la revisión de `lexer.c`, la verificación en Windows y el registro de su aparte en este documento (evidencia técnica previa: `docs/evidencias/02-tokens.png`) |
+| Ingrid Paola Dzul Segovia | `src/lexer.c`: tokens, categorías, posiciones y errores léxicos | `f3271b8` (revisión de `lexer.c`, verificación en Windows y registro de su aparte en este documento; evidencia técnica previa: `docs/evidencias/02-tokens.png`) |
 | Jonathan Uriel Che Castillo | `src/parser.c`, `src/ast.c`: gramática, precedencias y representación AST | `56b2f77` (pruebas propias `unario` y `comparacion` + registro en `run_hito1.py`); `b95b1cf` (aparte personal en este documento) |
 | Josue Efrain Martin Pool | `src/compilador.c`, `Makefile`, `tests/hito1/`: integración, diagnóstico y pruebas | `cd714e4` (implementación), `069a723` (`test-hito1-propias` + reporte), `bf172b7` (fix verificador Windows), `aa315d1` (documentación) |
 
@@ -99,7 +99,7 @@ La tabla refleja una **propuesta de revisión y exposición**, no la autoría de
 
 **Comentario o corrección personal de Ingrid:** Revisé `src/lexer.c` línea por línea (con asistencia de IA para preparar la lectura) y lo confirmé ejecutando el compilador. El lexer distingue las palabras reservadas (`int`, `if`, `else`, `while`, `print`) de los identificadores comparando la longitud exacta del lexema: comprobé que `intx` e `impar` se clasifican como `ID` y no como `KW`, mientras que `int` sí sale como `KW`. Registra la línea y la columna de cada token: en `caracter_invalido.lj` el error `S01` se reporta en la columna exacta 11 donde está el carácter inválido. Ignora los comentarios `//` (la línea 1 de `tokens.lj` no produce ningún token) y añade el `EOF` una sola vez al final (`2:1 EOF` / `4:1 EOF`). Observación que anoto: en modo `--tokens` un error léxico interrumpe la impresión antes de mostrar los tokens, decisión que vive en la integración, no en el lexer.
 
-**Prueba realizada / commit:** Compilé en Windows con `gcc 16.2.0 -std=c11 -Wall -Wextra -Werror -O2` sin warnings y ejecuté `.\verificar-hito1-windows.ps1` → **4/4 pruebas oficiales y 8/8 propias superadas**. Además ejecuté `.\lenguajito.exe tests\hito1\01_expresion.lj --tokens` (formato `LINEA:COLUMNA CAT lexema` conforme a la especificación), `.\lenguajito.exe pruebas\hito1\tokens.lj --tokens` (coincide carácter por carácter con `pruebas/hito1/tokens.tokens`) y dos casos límite propios (`intx`/`impar` como `ID`; `!` aislado → `S01`). Evidencia técnica previa en `docs/evidencias/02-tokens.png`. Commit propio: registrado en el historial de `main`.
+**Prueba realizada / commit:** Compilé en Windows con `gcc 16.2.0 -std=c11 -Wall -Wextra -Werror -O2` sin warnings y ejecuté `.\verificar-hito1-windows.ps1` → **4/4 pruebas oficiales y 8/8 propias superadas**. Además ejecuté `.\lenguajito.exe tests\hito1\01_expresion.lj --tokens` (formato `LINEA:COLUMNA CAT lexema` conforme a la especificación), `.\lenguajito.exe pruebas\hito1\tokens.lj --tokens` (coincide carácter por carácter con `pruebas/hito1/tokens.tokens`) y dos casos límite propios (`intx`/`impar` como `ID`; `!` aislado → `S01`). Evidencia técnica previa en `docs/evidencias/02-tokens.png`. Commit propio: `f3271b8`.
 
 ### Punto de vista de Jonathan — propuesta para que él la revise
 
@@ -124,7 +124,7 @@ Se utilizó asistencia de IA para preparar la implementación inicial y la docum
 | Contexto | Rol | Especificación | Output | ¿Qué aceptaron, corrigieron o rechazaron? |
 | :--- | :--- | :--- | :--- | :--- |
 | Preparación del Proyecto Integrador | Asistente de programación | C11, GCC con `-Wall -Wextra -Werror`, libc, parser manual y gramática del curso | Código modular integrado al repositorio | Aceptado: compila limpio y las pruebas pasan (CI verde). Corregimos compatibilidad MinGW y validación de rango de literales. Confirmación de Ingrid registrada; confirmación final de Josue pendiente |
-| Léxico y tokens | Apoyo de implementación | `KW`, `ID`, `NUM`, `OP`, `DELIM`, `EOF`; formato `LINEA:COLUMNA TIPO lexema` | `src/lexer.c` y `--tokens` | Ingrid: aceptado tras revisar `lexer.c` línea por línea y verificar en Windows con `--tokens`, dos casos límite propios y `verificar-hito1-windows.ps1` (4/4 oficiales + 8/8 propias); commit propio en `main` |
+| Léxico y tokens | Apoyo de implementación | `KW`, `ID`, `NUM`, `OP`, `DELIM`, `EOF`; formato `LINEA:COLUMNA TIPO lexema` | `src/lexer.c` y `--tokens` | Ingrid: aceptado tras revisar `lexer.c` línea por línea y verificar en Windows con `--tokens`, dos casos límite propios y `verificar-hito1-windows.ps1` (4/4 oficiales + 8/8 propias); commit `f3271b8` |
 | Parser y AST | Apoyo de implementación | Análisis descendente recursivo, precedencias y AST del formato oficial | `src/parser.c`, `src/ast.c`, `--ast` | Jonathan: aceptado tras revisar `parser.c` y `ast.c` línea por línea; agregó las pruebas `unario` y `comparacion` (commit `56b2f77`) |
 | Diagnósticos y verificación | Asistente de pruebas | `S01` / `E01`, pruebas oficiales sin cambios y `make test-hito1` | Evidencia automatizada 4/4 en GitHub Actions | Josue: revisó la integración y verificó CI 4/4 oficiales + 8/8 propias + 20/20 generales; corrigió el verificador Windows (`bf172b7`) y documentó el reporte (`069a723`). Confirmación final pendiente |
 
@@ -133,7 +133,7 @@ Se utilizó asistencia de IA para preparar la implementación inicial y la docum
 **Registro de decisiones del equipo:**
 
 - **Aceptamos:** El compilador asistido por IA cumple la especificación: compilación limpia con `gcc -std=c11 -Wall -Wextra -Werror`, 4/4 pruebas oficiales y 8/8 propias en Windows (`verificar-hito1-windows.ps1`) y CI verde en los commits `56b2f77` y `b95b1cf`. Jonathan aceptó su parte (`parser.c`, `ast.c`) tras revisarla línea por línea y comprobar los árboles con el compilador; Ingrid aceptó su parte (`lexer.c`) tras revisarla línea por línea y verificarla con `--tokens` y casos límite propios; la aprobación de Josue queda pendiente de su propia revisión.
-- **Corregimos:** (1) Compatibilidad local con MinGW y validación del rango de literales (ya documentadas arriba). (2) Jonathan: se agregaron las pruebas `unario` y `comparacion` y su registro en `run_hito1.py` — commit `56b2f77`. (3) Jonathan: registro de su aparte personal en este documento — commit `b95b1cf`. (4) Ingrid: registro de su revisión de `lexer.c` con la verificación ejecutada en Windows — commit propio en `main`.
+- **Corregimos:** (1) Compatibilidad local con MinGW y validación del rango de literales (ya documentadas arriba). (2) Jonathan: se agregaron las pruebas `unario` y `comparacion` y su registro en `run_hito1.py` — commit `56b2f77`. (3) Jonathan: registro de su aparte personal en este documento — commit `b95b1cf`. (4) Ingrid: registro de su revisión de `lexer.c` con la verificación ejecutada en Windows — commit `f3271b8`.
 - **Rechazamos:** No se registraron rechazos.
 - **Consulta adicional a IA:** 2026-11-08 y 2026-11-09 — Jonathan pidió a la IA revisar el repositorio contra `PROYECTO.md` y `gramatica.md`. La IA verificó que las pruebas doradas `tests/` son idénticas (hash por hash) a las del repo del curso, que `--tokens`, `--ast` y los diagnósticos cumplen el formato de la especificación, y señaló pendientes: bitácora incompleta, commits individuales, avances de las sesiones 05 y 08, y cuatro tags sobre el mismo commit. El equipo aceptó completar esta bitácora y registrar commits individuales; la decisión sobre los tags `v0.2`/`v0.3`/`v1.0` queda pendiente.
 
@@ -149,7 +149,7 @@ Se utilizó asistencia de IA para preparar la implementación inicial y la docum
 - [ ] Cada integrante puede explicar las partes esenciales del Hito 1.
 - [x] Evidencias reales de ejecución en Windows y Linux anexadas al reporte actualizado.
 - [ ] Opiniones personales revisadas por sus autores (Jonathan: revisado y aprobado; Ingrid: revisado y aprobado el 2026-11-09; Josue: pendiente).
-- [x] Aportes y commits individuales registrados (Jonathan: `56b2f77` y `b95b1cf`; Ingrid: commit propio de revisión de `lexer.c` en `main`; Josue: pendiente de registro).
+- [x] Aportes y commits individuales registrados (Jonathan: `56b2f77` y `b95b1cf`; Ingrid: `f3271b8`; Josue: pendiente de registro).
 - [x] Tag `v0.1-hito1` existente verificado; su existencia no acredita aceptación individual ni demo.
 
 **Conclusión conjunta propuesta para revisar:**

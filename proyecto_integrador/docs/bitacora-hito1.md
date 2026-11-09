@@ -34,7 +34,7 @@ Estado al preparar el paquete: revisión humana y aportaciones individuales pend
 - **Cambio realizado:** ninguna modificación a `src/`; se actualizó la documentación con este registro.
 - **Comandos ejecutados:** `gcc -std=c11 -Wall -Wextra -Werror -O2 -o lenguajito.exe src\*.c`; `.\verificar-hito1-windows.ps1`; `.\lenguajito.exe tests\hito1\01_expresion.lj --tokens`; `.\lenguajito.exe pruebas\hito1\tokens.lj --tokens`; dos casos límite propios con `intx`/`impar` y con `!` aislado.
 - **Resultado:** compilación sin warnings; 4/4 pruebas oficiales y 8/8 propias; salida `--tokens` idéntica a `pruebas/hito1/tokens.tokens`; `intx` e `impar` clasificados como `ID`; `S01` reportado en la columna exacta del carácter inválido.
-- **Commit real:** pendiente de insertar el hash de este commit en `main`.
+- **Commit real:** `f3271b8464ad5a7233ec185a3496a69ec45e8472`, que es el commit que introdujo este registro.
 - **Rechazos:** ninguno. No se rechazó ninguna propuesta de IA porque la verificación empírica coincidió con lo propuesto; no se inventan rechazos.
 
 
