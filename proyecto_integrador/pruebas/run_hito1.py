@@ -15,6 +15,7 @@ def main():
         return 1
     cases = [
         ("tokens", "--tokens", 0, "tokens.tokens"),
+        ("prefijo_kw", "--tokens", 0, "prefijo_kw.tokens"),
         ("valido", "--check", 0, ""),
         ("no_declarada", "--check", 1, (1, 9, "E01")),
         ("sin_valor", "--check", 1, (2, 9, "E01")),
