@@ -155,3 +155,98 @@ y el CI verde en GitHub Actions desde el celular
 5. Tags: existe `v0.1-hito1`. Si alguien pregunta por los otros tres tags, responder
    con la verdad: se crearon juntos al preparar la estructura y los hitos 2–4 aún no
    se entregan; **recomendación del equipo: eliminarlos hasta que cada hito se entregue**.
+
+---
+
+## 6. Preguntas trampa del docente (cualquiera de los tres debe poder responder)
+
+Preguntas observadas en clase a otros equipos. Respuestas basadas en el código real
+del repositorio — repasar antes de la demo.
+
+### 6.1 ¿Cómo funciona el programa?
+
+> "Es un compilador de una sola pasada por etapas. `compilar()` (en
+> `src/compilador.c`) abre el archivo, lo lee completo en memoria, y corre el
+> pipeline: **lexer → parser → semántica → modo solicitado**. El lexer
+> (`lexear`) convierte el texto en tokens; el parser (`parsear`) construye el
+> AST; la semántica (`analizar`) valida declaraciones y lecturas; y al final se
+> imprime lo que pidió el modo: `--tokens`, `--ast` o el resultado de
+> `--check`. Si en cualquier etapa hay errores, no se pasa a la siguiente."
+
+### 6.2 ¿Cómo inicia el programa?
+
+> "Entra por `main()` en `src/main.c`. Valida que vengan 1 o 2 argumentos
+> (archivo y modo), si el modo no viene usa `--check` por defecto, verifica que
+> el modo esté en la lista permitida (`--tokens`, `--ast`, `--check`, `--tac`,
+> `--asm`, `--run`) y enseguida llama a `compilar(argv[1], modo)`. Si los
+> argumentos están mal, imprime el uso y devuelve código **2**."
+
+Flujo: `main()` → valida args/modo (`main.c:21-33`) → `compilar(ruta, modo)` → devuelve 0, 1 o 2.
+
+### 6.3 ¿Qué agente / qué modelo de IA usaron?
+
+> "Usamos un **asistente de programación** (IA conversacional) como apoyo de
+> implementación y revisión, siempre bajo supervisión del equipo. Cada uso está
+> registrado en la **bitácora C-R-E-O** de `docs/entrega_hito1.md`: qué
+> contexto se le dio, qué rol jugó, qué especificación siguió y qué produjo —
+> y en la última columna está **qué aceptamos, qué corregimos y qué
+> rechazamos**. El código lo revisamos y lo comprobamos nosotros con las
+> pruebas; la IA no define el criterio de aprobación."
+
+⚠️ Ojo: **no inventar el nombre de la herramienta que usó cada quien**. Cada
+integrante responde con la suya (la de Jonathan: OpenCode con modelo MiMo, según
+su propia bitácora). Si preguntan por lo de Ingrid o Josue, que ellos respondan.
+
+### 6.4 ¿Cuántas funciones hay?
+
+Conteo real del código fuente en `src/` (10 archivos `.c`):
+
+| Archivo | Funciones | Detalle |
+| :--- | ---: | :--- |
+| `parser.c` | 13 | `parsear`, `sentencia`, `bloque`, `lista`, `expresion`, `aditiva`, `multiplicativa`, `unaria`, `primaria`, `binaria`, `actual`, `aceptar`, `exigir` |
+| `tac.c` | 11 | `generar_tac`, `optimizar_tac`, `expresion`, `sentencias`, `emitir`, `temporal`, `casilla`, `literal`, `op_imprimir`, `tac_imprimir`, `tac_liberar` |
+| `semantica.c` | 8 | `analizar`, `revisar`, `expr`, `estado`, `buscar`, `diagnostico`, `restaurar`, `simbolos_liberar` |
+| `util.c` | 8 | `reservar`, `crecer`, `copiar`, `error`, `firmado`, `operar`, `operador`, `constante` |
+| `lexer.c` | 6 | `lexear`, `agregar`, `tokens_imprimir`, `tokens_liberar`, `letra`, `digito` |
+| `ast.c` | 4 | `nodo`, `ast_imprimir`, `imprimir`, `ast_liberar` |
+| `codegen.c` | 3 | `cargar`, `ensamblador`, `ejecutar_binario` |
+| `main.c` | 2 | `main`, `modo_valido` |
+| `compilador.c` | 1 | `compilar` |
+| **TOTAL** | **56** | |
+
+> "Hay **56 funciones** en total. Las del Hito 1 que usamos hoy son las de
+> `lexer.c` (6), `parser.c` (13), `ast.c` (4), `semantica.c` (8),
+> `util.c` (8) y `compilador.c` (1). Las de `tac.c` y `codegen.c` son
+> infraestructura de los hitos siguientes. De esas 56, **solo 1 es pública en
+> `compilador.h`**: `compilar()`; el resto son `static` o internas."
+
+### 6.5 ¿Dónde se ubica el problema y cuáles son?
+
+(Dos lecturas de la pregunta — responder las dos:)
+
+**Dónde se ubica el problema (la posición del error):**
+> "Cada diagnóstico lleva la posición exacta en el formato
+> `archivo:línea:columna: error EXX: mensaje`, con línea y columna que empiezan
+> en 1. La posición la lleva cada token en su estructura `Lugar {linea,
+> columna}` y la calcula el lexer mientras recorre el texto. El formato lo
+> imprime `error()` en `src/util.c`; el texto es libre, el formato no."
+
+**Dónde se ubica el problema (en qué etapa/código):**
+> "Depende del tipo: el problema **léxico** lo detecta `lexer.c` (carácter
+> inválido), el **sintáctico** lo detecta `parser.c` (estructura que no sigue
+> la gramática) y el **semántico** lo detecta `semantica.c` (declaraciones)."
+
+**Cuáles son (los códigos de este hito):**
+> "**`S01`**: error de lexema o de estructura — carácter inválido, expresión
+> incompleta, punto y coma faltante. **`E01`**: error semántico — variable no
+> declarada o lectura antes de asignación. Ambos terminan el proceso con código
+> de salida **1**; un programa válido devuelve **0** y un uso malo de la CLI **2**."
+
+### 6.6 ¿Dónde está `compilador.h`?
+
+> "Está en **`proyecto_integrador/src/compilador.h`**, junto a los demás
+> archivos del compilador. Es el contrato de la interfaz: declara una sola
+> función, `int compilar(const char *ruta, const char *modo)`, que recibe la
+> ruta del archivo y el modo, y devuelve el código de salida (0, 1 o 2). Lo
+> incluyen `main.c` (para llamarlo) y `compilador.c` (para definirlo)."
+
