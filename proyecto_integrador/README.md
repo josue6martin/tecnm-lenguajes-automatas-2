@@ -23,6 +23,17 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\verificar-hito1-window
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\practicar-hito1-windows.ps1
 ```
 
+Si la ejecución de scripts de PowerShell está deshabilitada en el equipo
+(política `Restricted`), usa los accesos directos `.cmd` equivalentes, que ya
+lanzan PowerShell con `-ExecutionPolicy Bypass`:
+
+```powershell
+.\verificar-hito1-windows.cmd
+.\verificar-windows.cmd
+.\practicar-hito1-windows.cmd
+.\practicar-windows.cmd
+```
+
 Los ocho casos propios están en `pruebas/hito1/`; `tests/` y `src/` permanecen sin cambios en esta actualización. `make test` incluye también las pruebas propias del Hito 1. Las etapas posteriores que ya existen se conservan y no amplían el alcance de esta entrega.
 
 El tag [`v0.1-hito1`](https://github.com/josue6martin/tecnm-lenguajes-automatas-2/tree/v0.1-hito1) ya estaba publicado sobre `3e09970377805c528cccd4936de765530bf96d00`; se conserva. Este complemento documental está en la rama `main`. La auditoría personal, las aportaciones de cada integrante y la demo requieren participación real del equipo.

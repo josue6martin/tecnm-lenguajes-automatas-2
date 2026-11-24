@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent
-BIN = RAIZ.parent / "lenguajito"
+BIN = RAIZ.parent / ("lenguajito.exe" if sys.platform == "win32" else "lenguajito")
 
 
 def ejecutar(archivo: Path, modo: str) -> subprocess.CompletedProcess:

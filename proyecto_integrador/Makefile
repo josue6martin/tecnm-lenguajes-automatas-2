@@ -1,8 +1,14 @@
-CC      ?= gcc
+CC      = gcc
 CFLAGS  ?= -std=c11 -Wall -Wextra -Werror -O2
 SRC     := $(wildcard src/*.c)
 HDR     := $(wildcard src/*.h)
+ifeq ($(OS),Windows_NT)
+BIN     := lenguajito.exe
+EXEEXT  := .exe
+else
 BIN     := lenguajito
+EXEEXT  :=
+endif
 
 .PHONY: all test test-hito1 test-hito2 test-hito3 test-hito4 test-propias demo-bin clean
 
@@ -18,9 +24,9 @@ test: $(BIN)
 
 test-propias: $(BIN)
 	python3 pruebas/run.py
-	mkdir -p build
-	$(CC) $(CFLAGS) -Isrc -o build/test-dce pruebas/dce.c src/tac.c src/util.c
-	./build/test-dce
+	python3 -c "from pathlib import Path; Path('build').mkdir(exist_ok=True)"
+	$(CC) $(CFLAGS) -Isrc -o build/test-dce$(EXEEXT) pruebas/dce.c src/tac.c src/util.c
+	./build/test-dce$(EXEEXT)
 
 demo-bin: $(BIN)
 	mkdir -p build
