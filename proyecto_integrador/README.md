@@ -65,17 +65,19 @@ harness de eliminación de temporales muertos. `make demo-bin` deja el ELF
 
 ## Ejecutar en este Windows
 
-En PowerShell, desde esta carpeta:
+En PowerShell, desde esta carpeta (requiere gcc de 64 bits en el PATH):
 
 ```powershell
 .\verificar-windows.ps1
-$env:PATH = 'C:\MinGW\bin;' + $env:PATH
 .\lenguajito.exe tests\validos\08_anidado.lj --run
 ```
 
-La compatibilidad local de `--run` usa MinGW **de 32 bits** y ejecuta un PE.
+En Windows `--run` **interpreta el AST** directamente (opción permitida por el
+DoD del Hito 2), porque el toolchain local es de 64 bits y el backend nativo
+genera ensamblador de 32 que `as` rechaza. En Linux `--run` ejecuta el binario
+nativo; la salida de ambos es idéntica.
 `--asm` siempre produce la salida oficial Linux x86-64 AT&T.
-Un PE de Windows no sustituye al ELF requerido en el Hito 4.
+Un binario de Windows no sustituye al ELF requerido en el Hito 4.
 No se necesita modificar `src/Main.java`: este trabajo se desarrolla en C.
 
 ## Qué funciona
